@@ -1,6 +1,10 @@
 import pika, logging, sys, argparse, time
 from argparse import RawTextHelpFormatter
 from time import sleep
+import os
+
+RABBITMQ_DEFAULT_USER = os.getenv('RABBITMQ_DEFAULT_USER')
+RABBITMQ_DEFAULT_PASS = os.getenv('RABBITMQ_DEFAULT_PASS')
 
 def on_message(channel, method_frame, header_frame, body):
     print method_frame.delivery_tag
@@ -30,7 +34,7 @@ if __name__ == '__main__':
     sleep(5)
     logging.basicConfig(level=logging.INFO)
     LOG = logging.getLogger(__name__)
-    credentials = pika.PlainCredentials('guest', 'guest')
+    credentials = pika.PlainCredentials(RABBITMQ_DEFAULT_USER, RABBITMQ_DEFAULT_PASS)
     parameters = pika.ConnectionParameters(args.server,
                                            int(args.port),
                                            '/',

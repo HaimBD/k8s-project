@@ -6,24 +6,39 @@ services:
     hostname: rabbitmq
     container_name: rabbitmq
     restart: always
+    env_file:
+      - path: C:\Users\HaimBD\PycharmProjects\k8s-project\.env
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
     ports:
       - "5672:5672"
       - "15672:15672"
 
   consumer:
-    image: rabbitmq-consumer:latest
+    image: haim77420/rabbitmq-consumer:7
     hostname: consumer
     container_name: consumer
     restart: always
+    env_file:
+      - path: C:\Users\HaimBD\PycharmProjects\k8s-project\.env
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
     depends_on:
       - rabbitmq
 
 
   producer:
-    image: rabbitmq-producer:latest
+    image: haim77420/rabbitmq-producer:1
     hostname: producer
     container_name: producer
     restart: always
+    env_file:
+      - path: C:\Users\HaimBD\PycharmProjects\k8s-project\.env
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
     depends_on:
       - rabbitmq
 
