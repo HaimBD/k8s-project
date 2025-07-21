@@ -7,7 +7,7 @@ services:
     container_name: rabbitmq
     restart: always
     env_file:
-      - path: C:\Users\HaimBD\PycharmProjects\k8s-project\.env
+      - path: ./.env
     environment:
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
@@ -16,12 +16,12 @@ services:
       - "15672:15672"
 
   consumer:
-    image: haim77420/rabbitmq-consumer:7
+    image: haim77420/rabbitmq-consumer:9
     hostname: consumer
     container_name: consumer
     restart: always
     env_file:
-      - path: C:\Users\HaimBD\PycharmProjects\k8s-project\.env
+      - path: ./.env
     environment:
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
@@ -30,12 +30,12 @@ services:
 
 
   producer:
-    image: haim77420/rabbitmq-producer:1
+    image: haim77420/rabbitmq-producer:2
     hostname: producer
     container_name: producer
     restart: always
     env_file:
-      - path: C:\Users\HaimBD\PycharmProjects\k8s-project\.env
+      - path: ./.env
     environment:
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
