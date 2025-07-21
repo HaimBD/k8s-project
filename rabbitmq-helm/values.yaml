@@ -1,0 +1,34 @@
+auth:
+  username: user
+  password: "7XxmMrkGR3CW3i9v"
+  erlangCookie: "RB51gwcWPfkG9AXRpjWlhUoxQENUPxn9"
+
+metrics:
+  enabled: false  # Do NOT enable Bitnami's built-in metrics if using custom exporter
+
+extraContainers:
+  - name: rabbitmq-exporter
+    image: kbudde/rabbitmq-exporter
+    imagePullPolicy: IfNotPresent
+    ports:
+      - name: metrics
+        containerPort: 9419
+    env:
+      - name: RABBIT_USER
+        value: user
+      - name: RABBIT_PASSWORD
+        value: "7XxmMrkGR3CW3i9v"
+      - name: RABBIT_URL
+        value: http://localhost:15672
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "9419"
+  prometheus.io/path: "/metrics"
+
+service:
+  extraPorts:
+    - name: metrics
+      port: 9419
+      targetPort: metrics
+      protocol: TCP
