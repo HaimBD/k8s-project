@@ -3,6 +3,5 @@ ENV PYTHONPATH=/usr/src/app
 ENV TEST='test1234567891011121314'
 WORKDIR /app
 COPY . .
-RUN apt install -y netcat
 RUN pip install -r requirements.txt
 CMD ["python", "consumer.py", "-p", "5672", "-s", "rabbitmq-helm"]
