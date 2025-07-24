@@ -31,7 +31,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     # sleep a few seconds to allow RabbitMQ server to come up
-    sleep(300)
+    sleep(5)
     logging.basicConfig(level=logging.INFO)
     LOG = logging.getLogger(__name__)
     credentials = pika.PlainCredentials(RABBITMQ_DEFAULT_USER, RABBITMQ_DEFAULT_PASS)
