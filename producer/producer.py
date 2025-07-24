@@ -25,7 +25,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     # sleep a few seconds to allow RabbitMQ server to come up
-    sleep(30)
+    sleep(300)
 
     logging.basicConfig(level=logging.INFO)
     LOG = logging.getLogger(__name__)
@@ -48,6 +48,6 @@ if __name__ == '__main__':
         else:
             LOG.warning('Message NOT delivered')
 
-        sleep(15)
+        sleep(150)
 
     connection.close()
