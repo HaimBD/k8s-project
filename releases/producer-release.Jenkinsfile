@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
         parameters {
                      string(name: 'IMG_BUILD', defaultValue: '', description: '')
@@ -18,32 +17,14 @@ pipeline {
                    {
 
                     sh '''
-
-
-                    if [[ ${IMG_URL} =~ "poly" ]]; then
-                        echo "poly"
-                        YAML_FILE=k8s/dev/polybot-dev.yaml
-                    elif [[ ${IMG_URL} =~ "yolo5" ]]; then
-                        echo "yolo5"
-                        YAML_FILE=k8s/dev/yolo-dev.yaml
-
-
-                    else
-                        echo "not met"
-                        exit 7
-                    fi
-
                     git config --global user.email "haimbendavid1995@gmail.com"
-                    git config --global user.name "HaimBD"
-                    git config --global --add safe.directory /home/ubuntu/jenkins/workspace/releases/releases-dev
-                    git fetch -p https://${USERNAME}:${PASSWORD}@github.com/HaimBD/cicd-project.git
-                    git checkout -f releases
-                    git merge -X theirs origin/main
-                    sed -i "s|image: .*|image: ${IMG_URL}|g" ${YAML_FILE}
-                    cat ${YAML_FILE}
-                    git add ${YAML_FILE}
-                    git commit --allow-empty -m $IMG_URL
-                    git push https://${USERNAME}:${PASSWORD}@github.com/HaimBD/cicd-project.git releases --force
+                    git config --global user.name "${USERNAME}"
+                    git config --global --add safe.directory /home/ubuntu/jenkins/workspace/CI-producer-release
+                    git fetch -p https://${USERNAME}:${PASSWORD}@github.com/${USERNAME}/k8s-project.git
+                    sed -i "s|tag: .*|tag: ${IMG_BUILD}|g" helms/producer-helm/producer-helm/values.yaml
+                    git add helms/producer-helm/producer-helm/values.yaml
+                    git commit --allow-empty -m $IMG_BUILD
+                    git push https://${USERNAME}:${PASSWORD}@github.com/${USERNAME}/k8s-project.git HEAD:main --force
                     '''
                     }
                 }
@@ -60,7 +41,7 @@ pipeline {
                     notFailBuild: true,
                     patterns: [[pattern: '.gitignore', type: 'INCLUDE']])
             sh 'docker system prune -a -f --filter "until=24h"'
-            sh 'echo Adding this............'
+            sh 'echo Adding this..............'
             }
         }
 }
