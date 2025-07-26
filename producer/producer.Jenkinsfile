@@ -23,5 +23,14 @@ pipeline {
                 }
             }
         }
+            stage('Trigger Release') {
+            steps {
+                build job: 'CI-consumer-release',
+                    wait: false,
+                    parameters: [
+                        string(name: 'IMG_BUILD', value: "${BUILD_NUMBER}")
+                    ]
+            }
+        }
                 }
         }
