@@ -21,8 +21,8 @@ pipeline {
                     git config --global user.name "${USERNAME}"
                     git config --global --add safe.directory /home/ubuntu/jenkins/workspace/CI-consumer-release
                     git fetch -p https://${USERNAME}:${PASSWORD}@github.com/${USERNAME}/k8s-project.git
-                    sed -i "s|tag: .*|tag: ${IMG_BUILD}|g" helm/consumer-helm/consumer-helm/values.yaml
-                    git add helm/consumer-helm/consumer-helm/values.yaml
+                    sed -i "s|tag: .*|tag: ${IMG_BUILD}|g" helms/consumer-helm/consumer-helm/values.yaml
+                    git add helms/consumer-helm/consumer-helm/values.yaml
                     git commit --allow-empty -m $IMG_BUILD
                     git push https://${USERNAME}:${PASSWORD}@github.com/${USERNAME}/k8s-project.git --force
                     '''
