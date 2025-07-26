@@ -14,7 +14,7 @@ pipeline {
                     string(credentialsId: 'Dockerhub-repository', variable: 'DOCKERHUB_REPO')
                     ]
                     ){
-                    sh 'echo "test.............."'
+                    sh 'echo "test..............."'
                     sh 'docker login --username "${USERNAME}" --password "${PASSWORD}"'
                     sh 'docker build -t "${PRODUCER_IMAGE}":"${BUILD_NUMBER}" producer/.'
                     sh 'docker image tag "${PRODUCER_IMAGE}":"${BUILD_NUMBER}" "${DOCKERHUB_REPO}"/"${PRODUCER_IMAGE}":"${BUILD_NUMBER}"'
