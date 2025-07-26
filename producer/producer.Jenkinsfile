@@ -25,7 +25,7 @@ pipeline {
         }
             stage('Trigger Release') {
             steps {
-                build job: 'CI-consumer-release',
+                build job: 'CI-producer-release',
                     wait: false,
                     parameters: [
                         string(name: 'IMG_BUILD', value: "${BUILD_NUMBER}")
