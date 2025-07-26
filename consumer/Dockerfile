@@ -1,6 +1,6 @@
 FROM python:2.7-onbuild
 ENV PYTHONPATH=/usr/src/app
-ENV TEST='test1234567891011121314'
+ENV TEST='test'
 WORKDIR /app
 COPY . .
 RUN pip install -r requirements.txt
