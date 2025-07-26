@@ -60,7 +60,7 @@ pipeline {
                     notFailBuild: true,
                     patterns: [[pattern: '.gitignore', type: 'INCLUDE']])
             sh 'docker system prune -a -f --filter "until=24h"'
-            sh 'echo Adding this........'
+            sh 'echo Adding this..........'
             }
         }
 }
