@@ -5,18 +5,18 @@ import os
 
 RABBITMQ_DEFAULT_USER = os.getenv('RABBITMQ_DEFAULT_USER')
 RABBITMQ_DEFAULT_PASS = os.getenv('RABBITMQ_DEFAULT_PASS')
-RABBITMQ_DEFAULT_PORT = os.getenv('RABBITMQ_DEFAULT_PORT', '5672')
-RABBITMQ_DEFAULT_SERVICE = os.getenv('RABBITMQ_DEFAULT_SERVICE', 'rabbitmq-helm')
-RABBITMQ_DEFAULT_MESSAGE = os.getenv('RABBITMQ_DEFAULT_MESSAGE', 'CICD with variables')
+RABBITMQ_DEFAULT_PORT = os.getenv('RABBITMQ_DEFAULT_PORT')
+RABBITMQ_DEFAULT_SERVICE = os.getenv('RABBITMQ_DEFAULT_SERVICE')
+RABBITMQ_DEFAULT_MESSAGE = os.getenv('RABBITMQ_DEFAULT_MESSAGE')
 
 if __name__ == '__main__':
-    examples = sys.argv[0] + f" -p {RABBITMQ_DEFAULT_PORT} -s {RABBITMQ_DEFAULT_SERVICE} -m {RABBITMQ_DEFAULT_MESSAGE} "
+    examples = sys.argv[0] + f" -p 5672 -s rabbitmq-helm -m CICD with variables "
     parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter,
                                  description='Run producer.py',
                                  epilog=examples)
     parser.add_argument('-p', '--port', action='store', dest='port', help='The port to listen on.')
     parser.add_argument('-s', '--server', action='store', dest='server', help='The RabbitMQ server.')
-    parser.add_argument('-m', '--message', action='store', dest='message', help='The message to send', required=False, default=f'{RABBITMQ_DEFAULT_MESSAGE}')
+    parser.add_argument('-m', '--message', action='store', dest='message', help='The message to send', required=False, default='CICD with variables')
     parser.add_argument('-r', '--repeat', action='store', dest='repeat', help='Number of times to repeat the message', required=False, default='30')
 
     args = parser.parse_args()
