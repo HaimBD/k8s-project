@@ -4,4 +4,4 @@ ENV TEST='test123456'
 WORKDIR /app
 COPY . .
 RUN pip install -r requirements.txt
-CMD ["python", "producer.py", "-p", "${RABBITMQ_DEFAULT_PORT}", "-s", "${RABBITMQ_DEFAULT_SERVICE}", "-m", "${RABBITMQ_DEFAULT_MESSAGE}", "-r", "30"]
+CMD ["python", "producer.py", "-p", "5672", "-s", "rabbitmq-helm", "-m", "CICD with variables", "-r", "30"]
