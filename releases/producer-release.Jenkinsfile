@@ -20,7 +20,7 @@ pipeline {
                     git config --global user.email "haimbendavid1995@gmail.com"
                     git config --global user.name "${USERNAME}"
                     git config --global --add safe.directory /home/ubuntu/jenkins/workspace/CI-producer-release
-                    git fetch -p https://${USERNAME}:${PASSWORD}@github.com/${USERNAME}/k8s-project.git
+                    git fetch -p origin main
                     sed -i "s|tag: .*|tag: ${IMG_BUILD}|g" helms/producer-helm/producer-helm/values.yaml
                     git add helms/producer-helm/producer-helm/values.yaml
                     git commit --allow-empty -m $IMG_BUILD
