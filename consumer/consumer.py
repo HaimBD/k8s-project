@@ -18,7 +18,7 @@ def on_message(channel, method_frame, header_frame, body):
 
 
 if __name__ == '__main__':
-    examples = sys.argv[0] + " -p ${RABBITMQ_DEFAULT_PORT} -s ${RABBITMQ_DEFAULT_SERVICE} "
+    examples = sys.argv[0] + f" -p ${RABBITMQ_DEFAULT_PORT} -s ${RABBITMQ_DEFAULT_SERVICE} "
     parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter,
                                  description='Run consumer.py',
                                  epilog=examples)
