@@ -18,7 +18,7 @@ def on_message(channel, method_frame, header_frame, body):
 
 
 if __name__ == '__main__':
-    examples = sys.argv[0] + f" -p 5672 -s rabbitmq-helm "
+    examples = sys.argv[0] + " -p 5672 -s rabbitmq-helm "
     parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter,
                                  description='Run consumer.py',
                                  epilog=examples)

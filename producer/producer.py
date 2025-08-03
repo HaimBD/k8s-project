@@ -10,7 +10,7 @@ RABBITMQ_DEFAULT_SERVICE = os.getenv('RABBITMQ_DEFAULT_SERVICE')
 RABBITMQ_DEFAULT_MESSAGE = os.getenv('RABBITMQ_DEFAULT_MESSAGE')
 
 if __name__ == '__main__':
-    examples = sys.argv[0] + f" -p 5672 -s rabbitmq-helm -m CICD with variables "
+    examples = sys.argv[0] + " -p 5672 -s rabbitmq-helm -m CICD with variables "
     parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter,
                                  description='Run producer.py',
                                  epilog=examples)
