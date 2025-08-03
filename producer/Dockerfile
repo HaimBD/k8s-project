@@ -4,4 +4,4 @@ ENV TEST='test12345'
 WORKDIR /app
 COPY . .
 RUN pip install -r requirements.txt
-CMD ["python", "producer.py", "-p", "5672", "-s", "rabbitmq-helm", "-m", "Hello", "-r", "30"]
+CMD ["python", "producer.py", "-p", "5672", "-s", "rabbitmq-helm", "-m", "CICD-Test", "-r", "30"]
