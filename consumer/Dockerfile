@@ -4,4 +4,4 @@ ENV TEST='test123456789'
 WORKDIR /app
 COPY . .
 RUN pip install -r requirements.txt
-CMD ["python", "consumer.py", "-p", "${RABBITMQ_DEFAULT_PORT}", "-s", "${RABBITMQ_DEFAULT_SERVICE}"]
+CMD ["python", "consumer.py", "-p", "5672", "-s", "rabbitmq-helm"]
