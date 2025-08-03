@@ -10,7 +10,7 @@ RABBITMQ_DEFAULT_SERVICE = os.getenv('RABBITMQ_DEFAULT_SERVICE')
 RABBITMQ_DEFAULT_MESSAGE = os.getenv('RABBITMQ_DEFAULT_MESSAGE')
 
 if __name__ == '__main__':
-    examples = sys.argv[0] + f" -p ${RABBITMQ_DEFAULT_PORT} -s ${RABBITMQ_DEFAULT_SERVICE} -m ${RABBITMQ_DEFAULT_MESSAGE}"
+    examples = sys.argv[0] + f" -p {RABBITMQ_DEFAULT_PORT} -s {RABBITMQ_DEFAULT_SERVICE} -m {RABBITMQ_DEFAULT_MESSAGE} "
     parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter,
                                  description='Run producer.py',
                                  epilog=examples)
