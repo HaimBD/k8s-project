@@ -5,6 +5,9 @@ import os
 
 RABBITMQ_DEFAULT_USER = os.getenv('RABBITMQ_DEFAULT_USER')
 RABBITMQ_DEFAULT_PASS = os.getenv('RABBITMQ_DEFAULT_PASS')
+RABBITMQ_DEFAULT_PORT = os.getenv('RABBITMQ_DEFAULT_PORT')
+RABBITMQ_DEFAULT_SERVICE = os.getenv('RABBITMQ_DEFAULT_SERVICE')
+RABBITMQ_DEFAULT_MESSAGE = os.getenv('RABBITMQ_DEFAULT_MESSAGE')
 
 def on_message(channel, method_frame, header_frame, body):
     print method_frame.delivery_tag
@@ -15,7 +18,7 @@ def on_message(channel, method_frame, header_frame, body):
 
 
 if __name__ == '__main__':
-    examples = sys.argv[0] + " -p 5672 -s rabbitmq-helm "
+    examples = sys.argv[0] + " -p ${RABBITMQ_DEFAULT_PORT} -s ${RABBITMQ_DEFAULT_SERVICE} "
     parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter,
                                  description='Run consumer.py',
                                  epilog=examples)
