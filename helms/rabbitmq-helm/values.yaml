@@ -32,3 +32,9 @@ service:
       port: 9419
       targetPort: metrics
       protocol: TCP
+
+persistence:
+  enabled: true
+  storageClass: "standard"
+  accessMode: ReadWriteOnce
+  size: 1Gi
